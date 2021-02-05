@@ -1,0 +1,89 @@
+@import "mixins";
+
+.accordion__section {
+  display: flex;
+  flex-direction: column;
+}
+
+.accordion {
+  @include primary-gradient;
+  @include primary-text;
+  @include accordion;
+}
+
+.accordion__secondary {
+  @include accordion;
+  @include secondary-color;
+  @include secondary-text;
+}
+
+.accordion:hover,
+.active {
+  @include primary-hover;
+}
+
+.accordion__secondary:hover,
+.active {
+  color: #fff;
+}
+
+.accordion__icon {
+  margin-left: 10px;
+  align-self: center;
+  transition: transform 0.6s ease;
+}
+
+.accordion__link-icon {
+  margin-left: 11px;
+}
+
+.accordion__link-text {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 10px;
+  margin-top: 5px;
+}
+
+.rotate {
+  transform: rotate(90deg);
+}
+
+.accordion__section a {
+  padding: 5px;
+}
+
+.accordion__link-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.accordion__content {
+  @include accordion__content;
+  @include primary-color;
+}
+
+.accordion__content-secondary {
+  @include accordion__content;
+  @include secondary-color;
+}
+
+.accordion__content:hover {
+  @include primary-hover;
+}
+
+.accordion__content-secondary:hover {
+  color: #fff;
+}
+
+.accordion__text {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 10px;
+}
+
+.hidden {
+  max-height: 0;
+  transition: max-height 0.6s;
+}

@@ -1,0 +1,105 @@
+@import "mixins";
+
+.sidebar {
+  @include sidebar;
+  @include primary-color;
+  @include primary-text;
+}
+
+.sidebar__secondary {
+  @include sidebar;
+  @include secondary-color;
+  @include secondary-text;
+}
+
+.collapsed {
+  margin-left: -250px;
+}
+
+.button__collapsed {
+  margin-right: -45px !important;
+}
+
+.sidebar__title-wrapper {
+  min-height: 10%;
+  display: flex;
+  margin-bottom: 25px;
+}
+
+.sidebar__title {
+  text-align: center;
+  font-family: "Poppins", Arial, sans-serif;
+  line-height: 1.5;
+  font-size: 2.5rem;
+  font-weight: 700;
+  padding: 35px 0 0 1.5rem;
+}
+
+.sidebar__link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.sidebar__logo {
+  max-width: 250px;
+  max-height: auto;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  @include primary-color;
+}
+
+.sidebar__collapse-wrapper {
+  position: absolute;
+  right: 0;
+  display: inline-block;
+  top: 20px;
+  margin-right: -20px;
+  transition: 0.3s;
+}
+
+.sidebar__collapse {
+  @include sidebar__collapse;
+  @include primary-button-collapse;
+}
+
+.sidebar__collapse-secondary {
+  @include sidebar__collapse;
+  @include secondary-color;
+}
+
+.sidebar__collapse-secondary:hover,
+.sidebar__collapse-secondary:active,
+.sidebar__collapse-secondary:focus {
+  outline: none;
+}
+
+.sidebar__collapse:hover,
+.sidebar__collapse:active,
+.sidebar__collapse:focus {
+  outline: none;
+}
+
+.sidebar__hamburger {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+  width: 25px;
+  height: fit-content;
+  margin: 1px auto;
+}
+.sidebar__hamburger hr {
+  width: 60%;
+  height: 3px;
+  border: none;
+  background: #fff;
+}
+.sidebar__hamburger hr.line2 {
+  width: 60%;
+}
+.sidebar__hamburger hr.line3 {
+  width: 60%;
+}
