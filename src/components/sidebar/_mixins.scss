@@ -1,9 +1,10 @@
 @mixin sidebar {
-  position: relative;
+  position: fixed;
+  overflow: scroll;
   min-width: 250px;
   max-width: 250px;
   box-sizing: border-box;
-
+  height: 100%;
   transition: all 0.6s;
 }
 
@@ -28,13 +29,23 @@
 
 @mixin accordion {
   cursor: pointer;
+  font: inherit;
   padding: 5px;
   display: flex;
   align-items: center;
   border: none;
   outline: none;
-  transition: background 0.6s ease;
+  transition: background 0.6s ease-in-out;
   overflow: hidden;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @mixin accordion__content {
@@ -42,8 +53,17 @@
   overflow: hidden;
   text-decoration: none;
   color: #fff;
-  max-height: 400px;
-  transition: background-color, max-height 0.6s;
+  opacity: 1;
+  max-height: 700px;
+  animation: fade-in 0.6s;
+  transition: background-color, max-height 0.6s ease-out;
+}
+
+@mixin accordion__link-wrapper {
+  display: flex;
+  align-items: center;
+  color: inherit;
+  padding: 5px;
 }
 
 @mixin primary-color {
@@ -71,6 +91,10 @@
   background-color: #3445b4;
 }
 
+@mixin secondary-button-color {
+  background-color: #2a3891;
+}
+
 @mixin secondary-text {
   color: rgba(255, 255, 255, 0.6);
 }
@@ -81,4 +105,37 @@
 
 @mixin secondary-icon {
   fill: #44bef1;
+}
+
+@mixin secondary-gradient {
+  background: linear-gradient(rgba(255, 255, 255, 0.37), #3445b4);
+}
+
+@mixin dark-color {
+  background-color: #1d1919;
+}
+
+@mixin dark-gradient {
+  background: linear-gradient(rgba(255, 255, 255, 0.25), #1d1919);
+}
+
+@mixin dark-button-color {
+  background-color: rgb(155, 151, 151);
+}
+
+@mixin dark-text {
+  color: #ccc;
+}
+
+@mixin dark-hover {
+  color: #f8b739;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

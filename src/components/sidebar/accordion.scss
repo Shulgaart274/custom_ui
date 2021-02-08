@@ -13,18 +13,26 @@
 
 .accordion__secondary {
   @include accordion;
-  @include secondary-color;
+  @include secondary-gradient;
   @include secondary-text;
 }
 
-.accordion:hover,
-.active {
+.accordion__dark {
+  @include accordion;
+  @include dark-gradient;
+  @include dark-text;
+}
+
+.accordion:hover {
   @include primary-hover;
 }
 
-.accordion__secondary:hover,
-.active {
+.accordion__secondary:hover {
   color: #fff;
+}
+
+.accordion__dark:hover {
+  @include dark-hover;
 }
 
 .accordion__icon {
@@ -38,7 +46,7 @@
 }
 
 .accordion__link-text {
-  font-family: "Roboto", sans-serif;
+  font-family: inherit, sans-serif;
   font-weight: 500;
   font-size: 14px;
   padding: 10px;
@@ -49,41 +57,69 @@
   transform: rotate(90deg);
 }
 
-.accordion__section a {
-  padding: 5px;
+.accordion__link-wrapper {
+  @include accordion__link-wrapper;
 }
 
-.accordion__link-wrapper {
-  display: flex;
-  align-items: center;
+.accordion__link-wrapper-secondary {
+  @include accordion__link-wrapper;
+}
+
+.accordion__link-wrapper-dark {
+  @include accordion__link-wrapper;
+}
+
+.accordion__link-wrapper:hover {
+  @include primary-hover;
+}
+
+.accordion__link-wrapper-secondary:hover {
+  color: #fff;
+}
+
+.accordion__link-wrapper-dark:hover {
+  @include dark-hover;
 }
 
 .accordion__content {
   @include accordion__content;
-  @include primary-color;
+  background-color: inherit;
 }
 
 .accordion__content-secondary {
   @include accordion__content;
-  @include secondary-color;
+  @include secondary-text;
+  background-color: inherit;
 }
 
-.accordion__content:hover {
-  @include primary-hover;
-}
-
-.accordion__content-secondary:hover {
-  color: #fff;
+.accordion__content-dark {
+  @include accordion__content;
+  @include dark-text;
+  background-color: inherit;
 }
 
 .accordion__text {
-  font-family: "Roboto", sans-serif;
+  font-family: inherit, sans-serif;
   font-weight: 500;
   font-size: 14px;
   padding: 10px;
+  color: inherit;
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
 .hidden {
+  animation: fade-out 0.6s;
   max-height: 0;
-  transition: max-height 0.6s;
+  transition: max-height 0.6s ease-in;
+}
+
+@media screen and (max-width: 767px) {
 }

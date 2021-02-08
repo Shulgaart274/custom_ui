@@ -6,10 +6,22 @@
   @include primary-text;
 }
 
+.sidebar__fix {
+  position: relative;
+
+  height: 100%;
+}
+
 .sidebar__secondary {
   @include sidebar;
   @include secondary-color;
-  @include secondary-text;
+  color: #fff;
+}
+
+.sidebar__dark {
+  @include sidebar;
+  @include dark-color;
+  @include dark-text;
 }
 
 .collapsed {
@@ -49,7 +61,6 @@
   list-style: none;
   padding: 0;
   margin: 0;
-  @include primary-color;
 }
 
 .sidebar__collapse-wrapper {
@@ -68,18 +79,23 @@
 
 .sidebar__collapse-secondary {
   @include sidebar__collapse;
-  @include secondary-color;
+  @include secondary-button-color;
 }
 
-.sidebar__collapse-secondary:hover,
-.sidebar__collapse-secondary:active,
-.sidebar__collapse-secondary:focus {
-  outline: none;
+.sidebar__collapse-dark {
+  @include sidebar__collapse;
+  @include dark-button-color;
 }
 
 .sidebar__collapse:hover,
 .sidebar__collapse:active,
-.sidebar__collapse:focus {
+.sidebar__collapse:focus,
+.sidebar__collapse-secondary:hover,
+.sidebar__collapse-secondary:active,
+.sidebar__collapse-secondary:focus,
+.sidebar__collapse-dark:hover,
+.sidebar__collapse-dark:active,
+.sidebar__collapse-dark:focus {
   outline: none;
 }
 
@@ -102,4 +118,11 @@
 }
 .sidebar__hamburger hr.line3 {
   width: 60%;
+}
+
+@media screen and (max-width: 767px) {
+  .sidebar {
+    max-height: 100%;
+    padding-bottom: 200px;
+  }
 }

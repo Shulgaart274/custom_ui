@@ -2,10 +2,16 @@ import React from "react";
 import PropTypes from "prop-types";
 import Accordion from "./accordion";
 
-const MenuItem = ({ item, items }) => {
+const MenuItem = ({ item, items, icons, theme }) => {
   return (
     <div className="menu-item">
-      <Accordion key={item.itemName} item={item} items={items} />
+      <Accordion
+        key={item.itemName}
+        theme={theme}
+        item={item}
+        items={items}
+        icons={icons}
+      />
     </div>
   );
 };

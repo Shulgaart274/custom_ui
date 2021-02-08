@@ -4,10 +4,16 @@ import PropTypes from "prop-types";
 import { Link, withRouter } from "react-router-dom";
 import "./sidebar.scss";
 
-export const SidebarItem = ({ item, items, ...rest }) => {
+export const SidebarItem = ({ item, items, theme, icons, ...rest }) => {
   return (
     <>
-      <MenuItem items={items} item={item} {...rest} />
+      <MenuItem
+        items={items}
+        item={item}
+        theme={theme}
+        icons={icons}
+        {...rest}
+      />
     </>
   );
 };
@@ -17,6 +23,7 @@ const Sidebar = ({
   sidebarLogo,
   sidebarTitle = "Business",
   theme = "primary",
+  icons,
 }) => {
   const [setActive, setActiveState] = useState("");
   const [collapse, setCollapse] = useState("sidebar");
@@ -31,24 +38,31 @@ const Sidebar = ({
 
   const collapseHandler = () => {
     setActiveState(setActive === "" ? "active" : "");
-    if (theme === "primary") {
-      setCollapse(setActive === "active" ? "sidebar" : "sidebar collapsed");
-    } else if (theme === "secondary") {
-      setSecondaryCollapse(
-        setActive === "active"
-          ? "sidebar__secondary"
-          : "sidebar__secondary collapsed"
-      );
-    } else if (theme === "dark") {
-      setDarkCollapse(
-        setActive === "active" ? "sidebar__dark" : "sidebar__dark collapsed"
-      );
-    }
     setButtonCollapse(
       setActive === "active"
         ? "sidebar__collapse-wrapper"
         : "sidebar__collapse-wrapper button__collapsed"
     );
+    switch (theme) {
+      case "primary":
+        return setCollapse(
+          setActive === "active" ? "sidebar" : "sidebar collapsed"
+        );
+      case "secondary":
+        return setSecondaryCollapse(
+          setActive === "active"
+            ? "sidebar__secondary"
+            : "sidebar__secondary collapsed"
+        );
+      case "dark":
+        return setDarkCollapse(
+          setActive === "active" ? "sidebar__dark" : "sidebar__dark collapsed"
+        );
+      default:
+        return setCollapse(
+          setActive === "active" ? "sidebar" : "sidebar collapsed"
+        );
+    }
   };
 
   const sidebarTheme = () => {
@@ -64,36 +78,53 @@ const Sidebar = ({
     }
   };
 
+  const sidebarButtonTheme = () => {
+    switch (theme) {
+      case "primary":
+        return "sidebar__collapse";
+      case "secondary":
+        return "sidebar__collapse-secondary";
+      case "dark":
+        return "sidebar__collapse-dark";
+      default:
+        return "sidebar__collapse";
+    }
+  };
+
   return (
     <div className={sidebarTheme()}>
-      <div className={`${buttonCollapse}`}>
-        <button className="sidebar__collapse" onClick={collapseHandler}>
-          <span className="sidebar__hamburger">
-            <hr className="line1" />
-            <hr className="line2" />
-            <hr className="line3" />
-          </span>
-        </button>
-      </div>
-      <div className="sidebar__title-wrapper">
-        {sidebarLogo ? (
-          <Link className="sidebar__link" to="/">
-            <img src={sidebarLogo} alt="logo" className="sidebar__logo" />
-          </Link>
-        ) : (
-          <Link className="sidebar__link" to="/">
-            <h2 className="sidebar__title">{sidebarTitle}</h2>
-          </Link>
-        )}
-      </div>
-      <div className="list">
-        {items.map((sidebarItem, index) => (
-          <SidebarItem
-            key={`${sidebarItem.itemName}${index}`}
-            item={sidebarItem}
-            items={sidebarItem.items}
-          />
-        ))}
+      <div className="sidebar__fix">
+        <div className={`${buttonCollapse}`}>
+          <button className={sidebarButtonTheme()} onClick={collapseHandler}>
+            <span className="sidebar__hamburger">
+              <hr className="line1" />
+              <hr className="line2" />
+              <hr className="line3" />
+            </span>
+          </button>
+        </div>
+        <div className="sidebar__title-wrapper">
+          {sidebarLogo ? (
+            <Link className="sidebar__link" to="/">
+              <img src={sidebarLogo} alt="logo" className="sidebar__logo" />
+            </Link>
+          ) : (
+            <Link className="sidebar__link" to="/">
+              <h2 className="sidebar__title">{sidebarTitle}</h2>
+            </Link>
+          )}
+        </div>
+        <div className="list">
+          {items.map((sidebarItem, index) => (
+            <SidebarItem
+              theme={theme}
+              key={`${sidebarItem.itemName}${index}`}
+              item={sidebarItem}
+              items={sidebarItem.items}
+              icons={icons}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
