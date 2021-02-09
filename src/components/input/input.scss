@@ -1,4 +1,5 @@
 .form {
+  font: inherit;
   width: 50%;
   position: relative;
   height: 50px;
@@ -6,9 +7,10 @@
 }
 
 .form input {
+  font: inherit;
   width: 100%;
   height: 100%;
-  color: #595f6e;
+  color: #222;
   padding-top: 20px;
   border: none;
   outline: none;
@@ -16,22 +18,47 @@
 
 .form label {
   position: absolute;
+  font: inherit;
   bottom: 0;
   left: 0%;
   width: 100%;
   height: 100%;
   pointer-events: none;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #222;
 }
 
-.form label::after {
+.form .label-name::after {
   content: "";
   position: absolute;
   left: 0px;
   bottom: -1px;
   height: 100%;
   width: 100%;
-  border-bottom: 3px solid #5fa8d3;
+  border-bottom: 3px solid #866ec7;
+  transform: translateX(-100%);
+  transition: all 0.3 ease;
+}
+
+.form .label-name-dark::after {
+  content: "";
+  position: absolute;
+  left: 0px;
+  bottom: -1px;
+  height: 100%;
+  width: 100%;
+  border-bottom: 3px solid #f8b739;
+  transform: translateX(-100%);
+  transition: all 0.3 ease;
+}
+
+.form .label-name-secondary::after {
+  content: "";
+  position: absolute;
+  left: 0px;
+  bottom: -1px;
+  height: 100%;
+  width: 100%;
+  border-bottom: 3px solid #3445b4;
   transform: translateX(-100%);
   transition: all 0.3 ease;
 }
@@ -47,12 +74,40 @@
 .form input:valid + .label-name .content-name {
   transform: translateY(-150%);
   font-size: 14px;
-  color: #5fa8d3;
+  color: #866ec7;
+}
+
+.form input:focus + .label-name-secondary .content-name,
+.form input:valid + .label-name-secondary .content-name {
+  transform: translateY(-150%);
+  font-size: 14px;
+  color: #3445b4;
+}
+
+.form input:focus + .label-name-dark .content-name,
+.form input:valid + .label-name-dark .content-name {
+  transform: translateY(-150%);
+  font-size: 14px;
+  color: #f8b739;
 }
 
 .form input:focus + .label-name::after,
 .form input:valid + .label-name::after {
   transform: translateX(0%);
+}
+
+.form input:focus + .label-name-secondary::after,
+.form input:valid + .label-name-secondary::after {
+  transform: translateX(0%);
+}
+
+.form input:focus + .label-name-dark::after,
+.form input:valid + .label-name-dark::after {
+  transform: translateX(0%);
+}
+
+.form input::placeholder {
+  color: rgb(150, 148, 148);
 }
 
 .form input:not(:focus)::placeholder {

@@ -1,11 +1,11 @@
 @mixin sidebar {
   position: fixed;
-  overflow: scroll;
   min-width: 250px;
   max-width: 250px;
   box-sizing: border-box;
-  height: 100%;
   transition: all 0.6s;
+  min-height: 100vh;
+  z-index: 5;
 }
 
 @mixin sidebar__collapse {
@@ -37,15 +37,6 @@
   outline: none;
   transition: background 0.6s ease-in-out;
   overflow: hidden;
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
 }
 
 @mixin accordion__content {

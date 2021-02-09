@@ -1,5 +1,7 @@
 .wrapper {
   display: flex;
+  align-items: stretch;
+  width: 100%;
   box-sizing: border-box;
   overflow: auto;
 }
@@ -7,5 +9,5 @@
 .content {
   background-color: aliceblue;
   padding-left: 50px;
-  height: 100vh;
+  min-height: 100vh;
 }

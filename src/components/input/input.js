@@ -1,39 +1,64 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./input.scss";
 
 const TextInput = ({
-  defaultValue = "Lina is Awesome",
+  variant = "primary",
+  defaultValue = "Awww",
   placeholder,
   disabled,
-  onChange,
-  onPressEnter,
+  onChange = () => {},
+  onPressEnter = () => {},
   id,
-  value,
+
   maxLength = 32,
   label,
+  name,
 }) => {
-  //  const handleKeyDown = (e) => {
-  //     const { onPressEnter, onKeyDown } = props;
-  //     if (e.keyCode === 13 && onPressEnter) {
-  //       onPressEnter(e);
-  //     }
-  //     if (onKeyDown) {
-  //       onKeyDown(e);
-  //     }
-  //   };
+  const [value, setValue] = useState(defaultValue);
+
+  const handleInputChange = ({ target }) => setValue(target.value);
+  useEffect(() => {
+    onChange({ [name]: value });
+  }, [value, name, onChange]);
+
+  const handlePressEnter = (e) => {
+    if (e.key === "Enter") {
+      onPressEnter({ [name]: value });
+    }
+  };
+
+  // if (value.length > maxLength) {
+  // }
+
+  const theme = () => {
+    switch (variant) {
+      case "primary":
+        return "label-name";
+      case "secondary":
+        return "label-name-secondary";
+      case "dark":
+        return "label-name-dark";
+      default:
+        return "label-name";
+    }
+  };
 
   return (
     <div className="form">
       <input
+        variant={variant}
+        maxLength={maxLength}
         type="text"
         id={id}
-        name={label}
+        name={name}
         placeholder={placeholder}
         disabled={disabled}
-        defaultValue={defaultValue}
+        onKeyDown={handlePressEnter}
+        onChange={handleInputChange}
+        value={value}
         required
       />
-      <label htmlFor={label} className="label-name">
+      <label htmlFor={name} className={theme()}>
         <span className="content-name">{label}</span>
       </label>
     </div>

@@ -1,15 +1,24 @@
-import React from "react";
+import React, { useState, useCallback } from "react";
 import Sidebar from "../sidebar/sidebar";
 import Icon from "../sidebar/icon";
 import "./content.scss";
 import TextInput from "../input/input";
 
 const Content = () => {
+  const [state, setState] = useState({});
+
+  const handleChangeInput = useCallback((value) => {
+    setState((prev) => ({
+      ...prev,
+      ...value,
+    }));
+  }, []);
+
   return (
     <div className="wrapper">
       <Sidebar items={items} theme="primary" icons={icons} />
       <div className="content">
-        <h1>What the fuck is this?</h1>
+        <h1>Aminokislota</h1>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Id sit ea
           accusamus quisquam veritatis est vero ipsam asperiores? Veniam nemo
@@ -21,7 +30,7 @@ const Content = () => {
           suscipit asperiores aut dolore eius porro cumque a ipsa doloremque!
         </p>
 
-        <h2>Holy shit</h2>
+        <h2>Ratatui</h2>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Id sit ea
           accusamus quisquam veritatis est vero ipsam asperiores? Veniam nemo
@@ -33,7 +42,7 @@ const Content = () => {
           suscipit asperiores aut dolore eius porro cumque a ipsa doloremque!
         </p>
 
-        <h3>FUCK! FUUUCK!</h3>
+        <h3>Marmelad</h3>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Id sit ea
           accusamus quisquam veritatis est vero ipsam asperiores? Veniam nemo
@@ -54,12 +63,44 @@ const Content = () => {
           <Icon iconName="arrow" width={16} />
         </div>
 
-        <TextInput
-          label="Братик, вводи текст"
-          placeholder="Героям слава!"
-          defaultValue="Слава Украине!"
-          onPressEnter={() => console.log("press enter")}
-        />
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+            height: "200px",
+          }}
+        >
+          <TextInput
+            maxLength="10"
+            value={state}
+            name="kek"
+            label="Brother"
+            placeholder="Type your shit"
+            onChange={handleChangeInput}
+            onPressEnter={(value) => console.log(value)}
+          />
+
+          <TextInput
+            variant="secondary"
+            value={state}
+            name="kek1"
+            label="Братик, вводи текст"
+            placeholder="Героям слава!"
+            onChange={handleChangeInput}
+            onPressEnter={(value) => console.log(value)}
+          />
+
+          <TextInput
+            variant="dark"
+            value={state}
+            name="kek2"
+            label="Братик, вводи текст"
+            placeholder="Героям слава!"
+            onChange={handleChangeInput}
+            onPressEnter={(value) => console.log(value)}
+          />
+        </div>
       </div>
     </div>
   );

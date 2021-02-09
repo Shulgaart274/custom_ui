@@ -93,38 +93,36 @@ const Sidebar = ({
 
   return (
     <div className={sidebarTheme()}>
-      <div className="sidebar__fix">
-        <div className={`${buttonCollapse}`}>
-          <button className={sidebarButtonTheme()} onClick={collapseHandler}>
-            <span className="sidebar__hamburger">
-              <hr className="line1" />
-              <hr className="line2" />
-              <hr className="line3" />
-            </span>
-          </button>
-        </div>
-        <div className="sidebar__title-wrapper">
-          {sidebarLogo ? (
-            <Link className="sidebar__link" to="/">
-              <img src={sidebarLogo} alt="logo" className="sidebar__logo" />
-            </Link>
-          ) : (
-            <Link className="sidebar__link" to="/">
-              <h2 className="sidebar__title">{sidebarTitle}</h2>
-            </Link>
-          )}
-        </div>
-        <div className="list">
-          {items.map((sidebarItem, index) => (
-            <SidebarItem
-              theme={theme}
-              key={`${sidebarItem.itemName}${index}`}
-              item={sidebarItem}
-              items={sidebarItem.items}
-              icons={icons}
-            />
-          ))}
-        </div>
+      <div className={`${buttonCollapse}`}>
+        <button className={sidebarButtonTheme()} onClick={collapseHandler}>
+          <span className="sidebar__hamburger">
+            <hr className="line1" />
+            <hr className="line2" />
+            <hr className="line3" />
+          </span>
+        </button>
+      </div>
+      <div className="sidebar__title-wrapper">
+        {sidebarLogo ? (
+          <Link className="sidebar__link" to="/">
+            <img src={sidebarLogo} alt="logo" className="sidebar__logo" />
+          </Link>
+        ) : (
+          <Link className="sidebar__link" to="/">
+            <h2 className="sidebar__title">{sidebarTitle}</h2>
+          </Link>
+        )}
+      </div>
+      <div className="list">
+        {items.map((sidebarItem, index) => (
+          <SidebarItem
+            theme={theme}
+            key={`${sidebarItem.itemName}${index}`}
+            item={sidebarItem}
+            items={sidebarItem.items}
+            icons={icons}
+          />
+        ))}
       </div>
     </div>
   );

@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 const Accordion = ({ item, items, theme, icons }) => {
   const [setActive, setActiveState] = useState("");
   const [setHeight, setHeightState] = useState("accordion__content");
-  const [setRotate, setRotateState] = useState("accordion__icon");
+  const [setRotate, setRotateState] = useState("accordion__arrow");
 
   const toggleAccordion = () => {
     setActiveState(setActive === "" ? "active" : "");
@@ -19,7 +19,7 @@ const Accordion = ({ item, items, theme, icons }) => {
         : "accordion__content hidden"
     );
     setRotateState(
-      setActive === "active" ? "accordion__icon" : "accordion__icon rotate"
+      setActive === "active" ? "accordion__arrow" : "accordion__arrow rotate"
     );
   };
 

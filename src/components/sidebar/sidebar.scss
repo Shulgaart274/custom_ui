@@ -6,12 +6,6 @@
   @include primary-text;
 }
 
-.sidebar__fix {
-  position: relative;
-
-  height: 100%;
-}
-
 .sidebar__secondary {
   @include sidebar;
   @include secondary-color;
@@ -35,7 +29,8 @@
 .sidebar__title-wrapper {
   min-height: 10%;
   display: flex;
-  margin-bottom: 25px;
+  padding: 25px;
+  max-width: 250px;
 }
 
 .sidebar__title {
@@ -44,7 +39,7 @@
   line-height: 1.5;
   font-size: 2.5rem;
   font-weight: 700;
-  padding: 35px 0 0 1.5rem;
+  padding-top: 15px;
 }
 
 .sidebar__link {
@@ -53,7 +48,7 @@
 }
 
 .sidebar__logo {
-  max-width: 250px;
+  max-width: 100%;
   max-height: auto;
 }
 
@@ -121,8 +116,34 @@
 }
 
 @media screen and (max-width: 767px) {
-  .sidebar {
-    max-height: 100%;
-    padding-bottom: 200px;
+  .list {
+    overflow: scroll;
+    height: 485px;
+  }
+
+  .list::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 432px) {
+  .sidebar__fix {
+    margin-bottom: 15px;
+  }
+
+  .list {
+    height: 500px;
+  }
+}
+
+@media screen and (max-width: 385px) {
+  .list {
+    height: 440px;
+  }
+}
+
+@media screen and (max-width: 340px) {
+  .list {
+    height: 340px;
   }
 }
