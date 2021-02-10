@@ -1,115 +1,252 @@
-.form {
-  font: inherit;
-  width: 50%;
-  position: relative;
-  height: 50px;
-  overflow: hidden;
+@import "./mixins";
+
+.custom-field input:not(:focus)::placeholder {
+  visibility: hidden;
 }
 
-.form input {
-  font: inherit;
-  width: 100%;
-  height: 100%;
-  color: #222;
-  padding-top: 20px;
-  border: none;
-  outline: none;
+.custom-field {
+  @include custom-field;
 }
 
-.form label {
+.custom-field .text-input {
+  @include input;
+}
+
+.label-hidden {
   position: absolute;
-  font: inherit;
-  bottom: 0;
-  left: 0%;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  border-bottom: 1px solid #222;
+  left: 12px;
+  transform: translateY(-50%);
+  top: 10px;
+  font-size: 10px;
+  color: #aaa;
 }
 
-.form .label-name::after {
-  content: "";
+.label-hidden-second {
   position: absolute;
-  left: 0px;
-  bottom: -1px;
-  height: 100%;
-  width: 100%;
-  border-bottom: 3px solid #866ec7;
-  transform: translateX(-100%);
-  transition: all 0.3 ease;
+  left: 8px;
+  padding: 0 5px;
+  transform: translateY(-50%);
+  font-size: 10px;
+  top: 20px;
+  background: #fff;
+  color: #aaa;
 }
 
-.form .label-name-dark::after {
-  content: "";
+.custom-field .label {
   position: absolute;
-  left: 0px;
-  bottom: -1px;
-  height: 100%;
-  width: 100%;
-  border-bottom: 3px solid #f8b739;
-  transform: translateX(-100%);
-  transition: all 0.3 ease;
+  left: 12px;
+  top: calc(50% + 10px);
+  transform: translateY(-50%);
+  color: #aaa;
+  transition: top 0.3s ease, font-size 0.3s ease, color 0.3s ease;
 }
 
-.form .label-name-secondary::after {
-  content: "";
-  position: absolute;
-  left: 0px;
-  bottom: -1px;
-  height: 100%;
-  width: 100%;
-  border-bottom: 3px solid #3445b4;
-  transform: translateX(-100%);
-  transition: all 0.3 ease;
+.custom-field .text-input:focus + .label,
+.custom-field .text-input:focus + .label-hidden {
+  top: 10px;
+  font-size: 10px;
+  color: #6749b9;
 }
 
-.content-name {
-  position: absolute;
-  bottom: 5px;
-  left: 0px;
-  transition: all 0.3s ease;
-}
-
-.form input:focus + .label-name .content-name,
-.form input:valid + .label-name .content-name {
-  transform: translateY(-150%);
-  font-size: 14px;
-  color: #866ec7;
-}
-
-.form input:focus + .label-name-secondary .content-name,
-.form input:valid + .label-name-secondary .content-name {
-  transform: translateY(-150%);
-  font-size: 14px;
+.custom-field .text-input:focus + .label.secondary,
+.custom-field .text-input:focus + .label-hidden.secondary {
+  top: 10px;
+  font-size: 10px;
   color: #3445b4;
 }
 
-.form input:focus + .label-name-dark .content-name,
-.form input:valid + .label-name-dark .content-name {
-  transform: translateY(-150%);
-  font-size: 14px;
+.custom-field .text-input:focus + .label.dark,
+.custom-field .text-input:focus + .label-hidden.dark {
+  top: 10px;
+  font-size: 10px;
   color: #f8b739;
 }
 
-.form input:focus + .label-name::after,
-.form input:valid + .label-name::after {
-  transform: translateX(0%);
+// Second
+
+.custom-field.second .text-input {
+  background: #fff;
+  border: 2px solid #ddd;
+  transition: border-color 0.3 ease;
 }
 
-.form input:focus + .label-name-secondary::after,
-.form input:valid + .label-name-secondary::after {
-  transform: translateX(0%);
+.custom-field.second .text-input:focus.primary {
+  border-color: #6749b9;
+  transition-delay: 0.1s;
+}
+.custom-field.second .text-input:focus.secondary {
+  border-color: #3445b4;
+  transition-delay: 0.1s;
 }
 
-.form input:focus + .label-name-dark::after,
-.form input:valid + .label-name-dark::after {
-  transform: translateX(0%);
+.custom-field.second .text-input:focus.dark {
+  border-color: #f8b739;
+  transition-delay: 0.1s;
 }
 
-.form input::placeholder {
-  color: rgb(150, 148, 148);
+.custom-field.second .text-input + .label,
+.custom-field.second .text-input + .label-hidden-second {
+  padding: 0 5px;
+  left: 8px;
 }
 
-.form input:not(:focus)::placeholder {
-  visibility: hidden;
+.custom-field.second .text-input:focus + .label.primary,
+.custom-field.second .text-input:focus + .label-hidden-second.primary {
+  color: #6749b9;
+  top: 20px;
+  background: #fff;
+}
+.custom-field.second .text-input:focus + .label.secondary,
+.custom-field.second .text-input:focus + .label-hidden-second.secondary {
+  color: #3445b4;
+  top: 20px;
+  background: #fff;
+}
+.custom-field.second .text-input:focus + .label.dark,
+.custom-field.second .text-input:focus + .label-hidden-second.dark {
+  color: #f8b739;
+  top: 20px;
+  background: #fff;
+}
+
+// Third
+
+.custom-field.third .text-input.primary {
+  border-radius: 0;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  background: linear-gradient(90deg, #6749b9, #6749b9) center bottom/0 2px
+      no-repeat,
+    linear-gradient(90deg, #ccc, #ccc) left bottom/100% 2px no-repeat,
+    linear-gradient(90deg, #fafafa, #fafafa) left bottom/100% no-repeat;
+  transition: background-size 0.3s ease;
+}
+
+.custom-field.third .text-input.secondary {
+  border-radius: 0;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  background: linear-gradient(90deg, #3445b4, #3445b4) center bottom/0 2px
+      no-repeat,
+    linear-gradient(90deg, #ccc, #ccc) left bottom/100% 2px no-repeat,
+    linear-gradient(90deg, #fafafa, #fafafa) left bottom/100% no-repeat;
+  transition: background-size 0.3s ease;
+}
+
+.custom-field.third .text-input.dark {
+  border-radius: 0;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  background: linear-gradient(90deg, #f8b739, #f8b739) center bottom/0 2px
+      no-repeat,
+    linear-gradient(90deg, #ccc, #ccc) left bottom/100% 2px no-repeat,
+    linear-gradient(90deg, #fafafa, #fafafa) left bottom/100% no-repeat;
+  transition: background-size 0.3s ease;
+}
+
+.custom-field.third .text-input:focus {
+  background-size: 100% 2px, 100% 2px, 100%;
+}
+
+// Fourth
+
+.custom-field.fourth .border.primary,
+.custom-field.fourth .border.secondary,
+.custom-field.fourth .border.dark {
+  width: 100%;
+  height: calc(100% - 20px);
+  position: absolute;
+  left: 0;
+  top: 20px;
+  border-radius: 3px;
+}
+
+.custom-field.fourth .border.primary::before,
+.custom-field.fourth .border.primary::after,
+.custom-field.fourth .border.secondary::before,
+.custom-field.fourth .border.secondary::after,
+.custom-field.fourth .border.dark::before,
+.custom-field.fourth .border.dark::after {
+  content: "";
+  display: inline-block;
+  width: 0;
+  height: 0;
+  position: absolute;
+
+  border-radius: 3px;
+}
+
+.custom-field.fourth .border.primary::before {
+  left: 0;
+  bottom: 0;
+  border-bottom: 0px solid #6749b9;
+  border-right: 0px solid #6749b9;
+  transition: border-width 0.2s ease 0.8s, width 0.2s ease 0.6s,
+    height 0.2s ease 0.4s;
+}
+
+.custom-field.fourth .border.secondary::before {
+  left: 0;
+  bottom: 0;
+  border-bottom: 0px solid #3445b4;
+  border-right: 0px solid #3445b4;
+  transition: border-width 0.2s ease 0.8s, width 0.2s ease 0.6s,
+    height 0.2s ease 0.4s;
+}
+
+.custom-field.fourth .border.dark::before {
+  left: 0;
+  bottom: 0;
+  border-bottom: 0px solid #f8b739;
+  border-right: 0px solid #f8b739;
+  transition: border-width 0.2s ease 0.8s, width 0.2s ease 0.6s,
+    height 0.2s ease 0.4s;
+}
+
+.custom-field.fourth .border.primary::after {
+  top: -2px;
+  right: -2px;
+  border-top: 0px solid #6749b9;
+  border-left: 0px solid #6749b9;
+  transition: border-width 0s ease 0.4s, width 0.2s ease 0.2s, height 0.2s ease;
+}
+
+.custom-field.fourth .border.secondary::after {
+  top: -2px;
+  right: -2px;
+  border-top: 0px solid #3445b4;
+  border-left: 0px solid #3445b4;
+  transition: border-width 0s ease 0.4s, width 0.2s ease 0.2s, height 0.2s ease;
+}
+
+.custom-field.fourth .border.dark::after {
+  top: -2px;
+  right: -2px;
+  border-top: 0px solid #f8b739;
+  border-left: 0px solid #f8b739;
+  transition: border-width 0s ease 0.4s, width 0.2s ease 0.2s, height 0.2s ease;
+}
+
+.custom-field.fourth .text-input:focus ~ .border.primary::after,
+.custom-field.fourth .text-input:focus ~ .border.primary::before,
+.custom-field.fourth .text-input:focus ~ .border.secondary::after,
+.custom-field.fourth .text-input:focus ~ .border.secondary::before,
+.custom-field.fourth .text-input:focus ~ .border.dark::after,
+.custom-field.fourth .text-input:focus ~ .border.dark::before {
+  width: 100%;
+  height: 100%;
+  border-width: 2px;
+}
+
+.custom-field.fourth .text-input:focus ~ .border.primary::before,
+.custom-field.fourth .text-input:focus ~ .border.secondary::before,
+.custom-field.fourth .text-input:focus ~ .border.dark::before {
+  transition: width 0.2s ease, height 0.2s ease 0.2s;
+}
+
+.custom-field.fourth .text-input:focus ~ .border.primary::after,
+.custom-field.fourth .text-input:focus ~ .border.secondary::after,
+.custom-field.fourth .text-input:focus ~ .border.dark::after {
+  transition: border-width 0s ease 0.4s, width 0.2s ease 0.4s,
+    height 0.2s ease 0.6s;
 }

@@ -72,6 +72,9 @@ const Content = () => {
           }}
         >
           <TextInput
+            widthInput="250px"
+            variant="third"
+            color="dark"
             maxLength="10"
             value={state}
             name="kek"
@@ -82,7 +85,9 @@ const Content = () => {
           />
 
           <TextInput
-            variant="secondary"
+            widthInput="200px"
+            variant="fourth"
+            color="dark"
             value={state}
             name="kek1"
             label="Братик, вводи текст"
@@ -92,7 +97,10 @@ const Content = () => {
           />
 
           <TextInput
-            variant="dark"
+            id="lalala"
+            widthInput="300px"
+            variant="fourth"
+            color="secondary"
             value={state}
             name="kek2"
             label="Братик, вводи текст"

@@ -2,21 +2,26 @@ import React, { useState, useEffect } from "react";
 import "./input.scss";
 
 const TextInput = ({
-  variant = "primary",
-  defaultValue = "Awww",
+  variant = "second",
+  color = "primary",
+  defaultValue = "Defaultvalue",
   placeholder,
   disabled,
   onChange = () => {},
   onPressEnter = () => {},
   id,
-
+  required,
   maxLength = 32,
   label,
   name,
+  widthInput = "100%",
 }) => {
   const [value, setValue] = useState(defaultValue);
 
-  const handleInputChange = ({ target }) => setValue(target.value);
+  const handleInputChange = ({ target }) => {
+    setValue(target.value);
+  };
+
   useEffect(() => {
     onChange({ [name]: value });
   }, [value, name, onChange]);
@@ -27,25 +32,81 @@ const TextInput = ({
     }
   };
 
-  // if (value.length > maxLength) {
-  // }
-
-  const theme = () => {
+  const variantLabelHidden = () => {
     switch (variant) {
-      case "primary":
-        return "label-name";
-      case "secondary":
-        return "label-name-secondary";
-      case "dark":
-        return "label-name-dark";
+      case "first":
+        return "label-hidden";
+      case "second":
+        return "label-hidden-second";
+      case "third":
+        return "label-hidden";
+      case "fourth":
+        return "label-hidden";
       default:
-        return "label-name";
+        return "label-hidden";
     }
   };
 
+  const variantInput = () => {
+    switch (variant) {
+      case "first":
+        return "custom-field";
+      case "second":
+        return "custom-field second";
+      case "third":
+        return "custom-field third";
+      case "fourth":
+        return "custom-field fourth";
+      default:
+        return "custom-field";
+    }
+  };
+
+  const themeBorder = () => {
+    switch (color) {
+      case "primary":
+        return "primary";
+      case "secondary":
+        return "secondary";
+      case "dark":
+        return "dark";
+      default:
+        return "primary";
+    }
+  };
+
+  const isLabelShown = value.length > 0 ? variantLabelHidden() : "label";
+
   return (
-    <div className="form">
+    <label
+      className={`${variantInput()} ${themeBorder()}`}
+      style={{ width: widthInput }}
+    >
       <input
+        className={`text-input ${themeBorder()}`}
+        variant={variant}
+        maxLength={maxLength}
+        type="text"
+        id={id}
+        name={name}
+        placeholder={placeholder}
+        disabled={disabled}
+        onKeyDown={handlePressEnter}
+        onChange={handleInputChange}
+        value={value}
+        required={required}
+      />
+      <span className={`${isLabelShown} ${themeBorder()}`}>{label}</span>
+      <span className={`border ${themeBorder()}`}></span>
+    </label>
+  );
+};
+
+export default TextInput;
+
+// <div className="form">
+
+/* <input
         variant={variant}
         maxLength={maxLength}
         type="text"
@@ -60,9 +121,6 @@ const TextInput = ({
       />
       <label htmlFor={name} className={theme()}>
         <span className="content-name">{label}</span>
-      </label>
-    </div>
-  );
-};
+      </label> */
 
-export default TextInput;
+// </div>
