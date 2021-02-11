@@ -6,6 +6,7 @@
 }
 
 @mixin input {
+  font: inherit;
   border: none;
   appearance: none;
   background: #f2f2f2;

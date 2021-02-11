@@ -16,7 +16,7 @@ const Content = () => {
 
   return (
     <div className="wrapper">
-      <Sidebar items={items} theme="primary" icons={icons} />
+      <Sidebar items={items} theme="dark" icons={icons} />
       <div className="content">
         <h1>Aminokislota</h1>
         <p>
@@ -72,10 +72,11 @@ const Content = () => {
           }}
         >
           <TextInput
+            required
             widthInput="250px"
-            variant="third"
-            color="dark"
-            maxLength="10"
+            variant="first"
+            color="secondary"
+            maxLength="15"
             value={state}
             name="kek"
             label="Brother"
@@ -85,9 +86,10 @@ const Content = () => {
           />
 
           <TextInput
+            required
             widthInput="200px"
             variant="fourth"
-            color="dark"
+            color="primary"
             value={state}
             name="kek1"
             label="Братик, вводи текст"
@@ -99,8 +101,8 @@ const Content = () => {
           <TextInput
             id="lalala"
             widthInput="300px"
-            variant="fourth"
-            color="secondary"
+            variant="third"
+            color="primary"
             value={state}
             name="kek2"
             label="Братик, вводи текст"

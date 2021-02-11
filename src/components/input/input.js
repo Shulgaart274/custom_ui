@@ -14,6 +14,7 @@ const TextInput = ({
   maxLength = 32,
   label,
   name,
+  requiredHelper = "Поле не может быть пустым!",
   widthInput = "100%",
 }) => {
   const [value, setValue] = useState(defaultValue);
@@ -62,7 +63,7 @@ const TextInput = ({
     }
   };
 
-  const themeBorder = () => {
+  const themeColor = () => {
     switch (color) {
       case "primary":
         return "primary";
@@ -70,6 +71,7 @@ const TextInput = ({
         return "secondary";
       case "dark":
         return "dark";
+
       default:
         return "primary";
     }
@@ -79,11 +81,12 @@ const TextInput = ({
 
   return (
     <label
-      className={`${variantInput()} ${themeBorder()}`}
+      className={`${variantInput()} ${themeColor()}`}
       style={{ width: widthInput }}
+      requirederror={value.length < 1 && required ? requiredHelper : ""}
     >
       <input
-        className={`text-input ${themeBorder()}`}
+        className={`text-input ${themeColor()}`}
         variant={variant}
         maxLength={maxLength}
         type="text"
@@ -96,8 +99,10 @@ const TextInput = ({
         value={value}
         required={required}
       />
-      <span className={`${isLabelShown} ${themeBorder()}`}>{label}</span>
-      <span className={`border ${themeBorder()}`}></span>
+      <span className={`${isLabelShown} ${themeColor()}`}>
+        {required ? `${label}*` : label}
+      </span>
+      <span className={`border ${themeColor()}`}></span>
     </label>
   );
 };
