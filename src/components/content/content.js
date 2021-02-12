@@ -4,6 +4,8 @@ import Icon from "../sidebar/icon";
 import "./content.scss";
 import TextInput from "../input/input";
 
+import Button from "../button/button";
+
 const Content = () => {
   const [state, setState] = useState({});
 
@@ -17,7 +19,7 @@ const Content = () => {
   return (
     <div className="wrapper">
       <Sidebar items={items} theme="dark" icons={icons} />
-      <div className="content">
+      <div className="content" style={{ background: "#383030", color: "#fff" }}>
         <h1>Aminokislota</h1>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Id sit ea
@@ -75,7 +77,7 @@ const Content = () => {
             required
             widthInput="250px"
             variant="first"
-            color="secondary"
+            color="dark"
             maxLength="15"
             value={state}
             name="kek"
@@ -89,7 +91,7 @@ const Content = () => {
             required
             widthInput="200px"
             variant="fourth"
-            color="primary"
+            color="dark"
             value={state}
             name="kek1"
             label="Братик, вводи текст"
@@ -99,10 +101,11 @@ const Content = () => {
           />
 
           <TextInput
+            autoComplete="off"
             id="lalala"
             widthInput="300px"
             variant="third"
-            color="primary"
+            color="dark"
             value={state}
             name="kek2"
             label="Братик, вводи текст"
@@ -110,6 +113,25 @@ const Content = () => {
             onChange={handleChangeInput}
             onPressEnter={(value) => console.log(value)}
           />
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-around",
+            alignItems: "center",
+            marginTop: "25px",
+          }}
+        >
+          <Button size="sm">Button</Button>
+
+          <Button variant="secondary" size="lg">
+            Secondary
+          </Button>
+          <Button variant="dark">Dark</Button>
+          <Button variant="disabled" disabled>
+            Disabled
+          </Button>
         </div>
       </div>
     </div>

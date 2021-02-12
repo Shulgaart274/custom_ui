@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import "./input.scss";
 
 const TextInput = ({
@@ -16,6 +17,7 @@ const TextInput = ({
   name,
   requiredHelper = "Поле не может быть пустым!",
   widthInput = "100%",
+  autoComplete,
 }) => {
   const [value, setValue] = useState(defaultValue);
 
@@ -86,6 +88,7 @@ const TextInput = ({
       requirederror={value.length < 1 && required ? requiredHelper : ""}
     >
       <input
+        autoComplete={autoComplete}
         className={`text-input ${themeColor()}`}
         variant={variant}
         maxLength={maxLength}
@@ -109,23 +112,20 @@ const TextInput = ({
 
 export default TextInput;
 
-// <div className="form">
-
-/* <input
-        variant={variant}
-        maxLength={maxLength}
-        type="text"
-        id={id}
-        name={name}
-        placeholder={placeholder}
-        disabled={disabled}
-        onKeyDown={handlePressEnter}
-        onChange={handleInputChange}
-        value={value}
-        required
-      />
-      <label htmlFor={name} className={theme()}>
-        <span className="content-name">{label}</span>
-      </label> */
-
-// </div>
+TextInput.propTypes = {
+  variant: PropTypes.oneOf(["first", "second", "third", "fourth"]),
+  color: PropTypes.oneOf(["primary", "secondary", "dark"]),
+  defaultValue: PropTypes.string,
+  placeholder: PropTypes.string,
+  disabled: PropTypes.bool,
+  onClick: PropTypes.func,
+  onPressEnter: PropTypes.func,
+  id: PropTypes.string || PropTypes.number,
+  required: PropTypes.bool,
+  maxLength: PropTypes.string || PropTypes.number,
+  label: PropTypes.string,
+  name: PropTypes.string,
+  requiredHelper: PropTypes.string,
+  widthInput: PropTypes.string || PropTypes.number,
+  autoComplete: PropTypes.oneOf(["off", "on"]),
+};

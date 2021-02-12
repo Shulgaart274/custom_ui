@@ -1,0 +1,13 @@
+@mixin btn {
+  font: inherit;
+  background-color: #866ec7;
+  border: none;
+  border-radius: 3px;
+  padding: 14px 28px;
+  line-height: 1.2;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}

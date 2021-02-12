@@ -5,9 +5,11 @@ import { Switch, withRouter } from "react-router-dom";
 function App() {
   return (
     <Switch>
-      <div className="App">
-        <Content />
-      </div>
+      <>
+        <div className="App">
+          <Content />
+        </div>
+      </>
     </Switch>
   );
 }
