@@ -68,7 +68,7 @@ const Button = ({
 Button.propTypes = {
   variant: PropTypes.oneOf(["primary", "secondary", "dark", "disabled"]),
   size: PropTypes.oneOf(["sm", "md", "lg"]),
-  width: PropTypes.string || PropTypes.number,
+  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onClick: PropTypes.func,
   onSubmit: PropTypes.func,
   disabled: PropTypes.bool,

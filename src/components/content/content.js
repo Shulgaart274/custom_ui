@@ -3,7 +3,7 @@ import Sidebar from "../sidebar/sidebar";
 import Icon from "../sidebar/icon";
 import "./content.scss";
 import TextInput from "../input/input";
-
+import Checkbox from "../checkbox/checkbox";
 import Button from "../button/button";
 
 const Content = () => {
@@ -132,6 +132,8 @@ const Content = () => {
           <Button variant="disabled" disabled>
             Disabled
           </Button>
+
+          <Checkbox size={40} color="dark" />
         </div>
       </div>
     </div>

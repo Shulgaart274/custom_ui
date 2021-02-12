@@ -1,0 +1,47 @@
+.custom-checkbox {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.custom-checkbox .checkbox-label {
+  font-size: 16px;
+  margin: 0 10px;
+}
+
+.custom-checkbox .checkmark-primary {
+  width: 25px;
+  height: 25px;
+  display: inline-block;
+  border-radius: 3px;
+  background: #866ec7 url(./checkbox-image.svg.png) center/1250% no-repeat;
+  transition: background-size 0.2s ease;
+}
+.custom-checkbox .checkmark-secondary {
+  width: 25px;
+  height: 25px;
+  display: inline-block;
+  border-radius: 3px;
+  background: #3445b4 url(./checkbox-image.svg.png) center/1250% no-repeat;
+  transition: background-size 0.2s ease;
+}
+.custom-checkbox .checkmark-dark {
+  width: 25px;
+  height: 25px;
+  display: inline-block;
+  border-radius: 3px;
+  background: #f8b739 url(./checkbox-image.svg.png) center/1250% no-repeat;
+  transition: background-size 0.2s ease;
+}
+
+.custom-checkbox .checkbox-input:checked + .checkmark-primary,
+.custom-checkbox .checkbox-input:checked + .checkmark-secondary,
+.custom-checkbox .checkbox-input:checked + .checkmark-dark {
+  background-size: 60%;
+  transition: background-size 0.25s cubic-bezier(0.7, 0, 0.18, 1.24);
+}
+
+.custom-checkbox .checkbox-input {
+  display: none;
+}
