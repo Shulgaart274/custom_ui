@@ -1,0 +1,234 @@
+$animation-duration: 700ms;
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #866ec7;
+  width: fit-content;
+  font-weight: 500;
+  font-size: 14px;
+  list-style: none;
+  overflow: hidden;
+  border-radius: 4px;
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.pagination .pagination-item {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 40px;
+  width: 40px;
+  text-decoration: none;
+  transition: background-color 0.2s;
+  border: 1px solid #ddd;
+
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.3s ease;
+}
+
+.pagination-button {
+  display: block;
+  position: relative;
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  color: #fff;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  text-align: center;
+  line-height: 40px;
+  cursor: pointer;
+
+  & .ripple {
+    background-color: #ccc;
+    border-radius: 50%;
+    pointer-events: none;
+    position: absolute;
+    transform: scale(0);
+  }
+  .ripple-active {
+    transform: scale(1.5);
+    transition: transform $animation-duration, opacity $animation-duration;
+    opacity: 0;
+  }
+
+  .ripple-start {
+    transform: scale(1.5);
+  }
+}
+
+.pagination-button:focus,
+.pagination-button:active {
+  outline: #6749b9;
+}
+
+.pagination .pagination-item.active {
+  background-color: #ccc;
+  color: white;
+  border: 1px solid #fff;
+}
+
+.pagination .pagination-item.disabled {
+  opacity: 0.3;
+}
+.pagination .pagination-item:hover:not(.active) {
+  background-color: #6749b9;
+}
+
+.pagination .pagination-item.disabled:hover {
+  background-color: #866ec7;
+  opacity: 0.3;
+}
+
+.pagination.secondary {
+  background-color: #3445b4;
+}
+
+.pagination.secondary .pagination-button:focus,
+.pagination.secondary .pagination-button:active {
+  outline: #3445b4;
+}
+
+.pagination.secondary .pagination-item:hover:not(.active) {
+  background-color: #2a3891;
+}
+
+.pagination.secondary .pagination-item.disabled:hover {
+  background-color: #3445b4;
+  opacity: 0.3;
+}
+
+.pagination.dark {
+  background-color: #c2902b;
+}
+
+.pagination.dark .pagination-button:focus,
+.pagination.dark .pagination-button:active {
+  outline: #f8b739;
+}
+
+.pagination.dark .pagination-item:hover:not(.active) {
+  background-color: #f8b739;
+}
+
+.pagination.dark .pagination-item.disabled:hover {
+  background-color: #c2902b;
+  opacity: 0.3;
+}
+// .pagination-button.btn-last {
+//   position: relative;
+//   overflow: hidden;
+//   & .ripple-last {
+//     background-color: #7250cf;
+//     border-radius: 50%;
+//     pointer-events: none;
+//     position: absolute;
+//     transform: scale(0);
+//   }
+
+//   .ripple-active {
+//     transform: scale(1.5);
+//     transition: transform $animation-duration, opacity $animation-duration;
+//     opacity: 0;
+//   }
+
+//   .ripple-start {
+//     transform: scale(1.5);
+//   }
+// }
+
+// .pagination-button.btn-next {
+//   position: relative;
+//   overflow: hidden;
+//   & .ripple-next {
+//     background-color: #ccc;
+//     border-radius: 50%;
+//     pointer-events: none;
+//     position: absolute;
+//     transform: scale(0);
+//   }
+
+//   .ripple-active {
+//     transform: scale(1.5);
+//     transition: transform $animation-duration, opacity $animation-duration;
+//     opacity: 0;
+//   }
+
+//   .ripple-start {
+//     transform: scale(1.5);
+//   }
+// }
+
+// .pagination-button.btn-page {
+//   position: relative;
+//   overflow: hidden;
+//   & .ripple-page {
+//     background-color: #7250cf;
+//     border-radius: 50%;
+//     pointer-events: none;
+//     position: absolute;
+//     transform: scale(0);
+//   }
+
+//   .ripple-active {
+//     transform: scale(1.5);
+//     transition: transform $animation-duration, opacity $animation-duration;
+//     opacity: 0;
+//   }
+
+//   .ripple-start {
+//     transform: scale(1.5);
+//   }
+// }
+
+// .pagination-button.btn-prev {
+//   position: relative;
+//   overflow: hidden;
+//   & .ripple-prev {
+//     background-color: #7250cf;
+//     border-radius: 50%;
+//     pointer-events: none;
+//     position: absolute;
+//     transform: scale(0);
+//   }
+
+//   .ripple-active {
+//     transform: scale(1.5);
+//     transition: transform $animation-duration, opacity $animation-duration;
+//     opacity: 0;
+//   }
+
+//   .ripple-start {
+//     transform: scale(1.5);
+//   }
+// }
+
+// .pagination-button.btn-first {
+//   position: relative;
+//   overflow: hidden;
+//   & .ripple-first {
+//     background-color: #7250cf;
+//     border-radius: 50%;
+//     pointer-events: none;
+//     position: absolute;
+//     transform: scale(0);
+//   }
+
+//   .ripple-active {
+//     transform: scale(1.5);
+//     transition: transform $animation-duration, opacity $animation-duration;
+//     opacity: 0;
+//   }
+
+//   .ripple-start {
+//     transform: scale(1.5);
+//   }
+// }

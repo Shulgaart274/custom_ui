@@ -1,12 +1,34 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
+import axios from "axios";
 import Sidebar from "../sidebar/sidebar";
 import Icon from "../sidebar/icon";
 import "./content.scss";
 import TextInput from "../input/input";
 import Checkbox from "../checkbox/checkbox";
 import Button from "../button/button";
+import Pagination from "../pagination/pagination";
 
 const Content = () => {
+  const [posts, setPosts] = useState([]);
+  const [pageOfItems, setPageOfItems] = useState([]);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const res = await axios.get("https://jsonplaceholder.typicode.com/todos");
+      setPosts(res.data);
+    };
+
+    fetchPosts();
+  }, []);
+
+  const onChangePage = (pageOfItems) => {
+    setPageOfItems(pageOfItems);
+  };
+
+  useEffect(() => {
+    onChangePage(pageOfItems);
+  }, [pageOfItems]);
+
   const [state, setState] = useState({});
 
   const handleChangeInput = useCallback((value) => {
@@ -21,41 +43,21 @@ const Content = () => {
       <Sidebar items={items} theme="dark" icons={icons} />
       <div className="content" style={{ background: "#383030", color: "#fff" }}>
         <h1>Aminokislota</h1>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Id sit ea
-          accusamus quisquam veritatis est vero ipsam asperiores? Veniam nemo
-          suscipit asperiores aut dolore eius porro cumque a ipsa doloremque!
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Id sit ea
-          accusamus quisquam veritatis est vero ipsam asperiores? Veniam nemo
-          suscipit asperiores aut dolore eius porro cumque a ipsa doloremque!
-        </p>
-
-        <h2>Ratatui</h2>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Id sit ea
-          accusamus quisquam veritatis est vero ipsam asperiores? Veniam nemo
-          suscipit asperiores aut dolore eius porro cumque a ipsa doloremque!
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Id sit ea
-          accusamus quisquam veritatis est vero ipsam asperiores? Veniam nemo
-          suscipit asperiores aut dolore eius porro cumque a ipsa doloremque!
-        </p>
-
-        <h3>Marmelad</h3>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Id sit ea
-          accusamus quisquam veritatis est vero ipsam asperiores? Veniam nemo
-          suscipit asperiores aut dolore eius porro cumque a ipsa doloremque!
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Id sit ea
-          accusamus quisquam veritatis est vero ipsam asperiores? Veniam nemo
-          suscipit asperiores aut dolore eius porro cumque a ipsa doloremque!
-        </p>
-
+        <ul className="ul">
+          {pageOfItems &&
+            pageOfItems.map((post) => (
+              <li key={post.id} className="list-group-item">
+                {post.title}
+              </li>
+            ))}
+        </ul>
+        <Pagination
+          items={posts}
+          onChangePage={onChangePage}
+          initialPage={3}
+          pageSize={10}
+          numOfPages={10}
+        />
         <div>
           <Icon iconName="dekstop-monitor" width={24} />
           <Icon iconName="home" width={24} />
@@ -133,7 +135,7 @@ const Content = () => {
             Disabled
           </Button>
 
-          <Checkbox size={40} color="dark" />
+          <Checkbox size={30} color="dark" />
         </div>
       </div>
     </div>
